@@ -11,7 +11,7 @@ struct packet_array {
     int length;
 };
 
-/* struct packet_array *read_packet_file(const char *filename); */
+struct packet_array *read_packet_file(const char *filename);
 
 void free_packet(struct packet *p);
 void free_packet_array(struct packet_array *pa);
