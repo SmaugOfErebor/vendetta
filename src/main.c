@@ -12,7 +12,7 @@ int main(int argc, char *argv[]) {
     struct packet_array *pa;
     
     /* Verify argument presence. */
-    if (argc < 2) {
+    if (argc != 2) {
         fprintf(stderr, "Usage: %s <input_file.hex|.txt>\n", argv[0]);
         return 1;
     }
