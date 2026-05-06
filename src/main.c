@@ -1,14 +1,16 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "packet.h"
+
 /**
  * VENDETTA
  * Various ENcoding DEtector Through Traffic Analysis
  */
 int main(int argc, char *argv[]) {
     const char *filename;
-    FILE *input_file;
-
+    struct packet_array *pa;
+    
     /* Verify argument presence. */
     if (argc < 2) {
         fprintf(stderr, "Usage: %s <input_file.hex|.txt>\n", argv[0]);
@@ -22,15 +24,11 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    /* Ensure that the file can be opened. */
-    input_file = fopen(filename, "r");
-    if (!input_file) {
-        perror("Error opening file");
-        return 1;
-    }
+    pa = read_packet_file(filename);
+    /* TODO: Actually use the packet array to brute force determine the CRC input/output/algorithm. */
+    free_packet_array(pa);
 
     printf("Test.\n");
-    fclose(input_file);
-
+    
     return 0;
 }
